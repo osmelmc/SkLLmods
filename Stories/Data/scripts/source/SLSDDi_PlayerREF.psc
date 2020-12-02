@@ -88,6 +88,14 @@ Function _maintenance()
 
 	isSlifInstalled = Game.GetModbyName("SexLab Inflation Framework.esp") != 255
 
+	If Game.GetModbyName("Campfire.esm") != 255
+		FormList CampHeatSourcesFireMedium = Game.GetFormFromFile(0x28F03, "Campfire.esm") as FormList
+		Form Flame = Game.GetFormFromFile(0xA50C , "SexLab-StoriesDevious.esp")
+		If Flame && CampHeatSourcesFireMedium && !CampHeatSourcesFireMedium.HasForm(Flame)
+			CampHeatSourcesFireMedium.AddForm(Flame)
+		EndIf
+	EndIf
+
 	If (!StorageUtil.HasIntValue(none, "_SLS_iStoriesDevious"))
 		StorageUtil.SetIntValue(none, "_SLS_iStoriesDevious", 1)
 	EndIf
